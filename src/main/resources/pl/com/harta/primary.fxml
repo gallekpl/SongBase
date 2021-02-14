@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.harta.PrimaryController">
+   <top>
+       <MenuBar BorderPane.alignment="CENTER">
+           <Menu mnemonicParsing="false" text="File">
+               <MenuItem fx:id="loadFile" mnemonicParsing="false" onAction="#loadFile" text="Load" />
+               <MenuItem fx:id="saveFile" mnemonicParsing="false" text="Save" />
+           </Menu>
+           <Menu mnemonicParsing="false" text="Edit" />
+           <Menu mnemonicParsing="false" text="Help">
+               <MenuItem mnemonicParsing="false" text="About" />
+           </Menu>
+       </MenuBar>
+   </top>
+   <bottom>
+       <VBox alignment="CENTER" prefHeight="22.0" prefWidth="800.0" spacing="20.0" BorderPane.alignment="CENTER">
+           <padding>
+               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+           </padding>
+           <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" />
+       </VBox>
+   </bottom>
+   <right>
+      <TableView fx:id="songTableView" prefHeight="200.0" prefWidth="635.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="titleColumn" prefWidth="158.0" text="Title" />
+          <TableColumn fx:id="authorColumn" minWidth="0.0" prefWidth="122.0" text="Author" />
+          <TableColumn fx:id="albumColumn" prefWidth="138.0" text="Album" />
+          <TableColumn fx:id="categoryColumn" prefWidth="127.0" text="Category" />
+          <TableColumn fx:id="votesColumn" prefWidth="71.0" text="Votes" />
+        </columns>
+      </TableView>
+   </right>
+</BorderPane>
