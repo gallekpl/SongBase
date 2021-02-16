@@ -1,6 +1,7 @@
 package pl.com.harta;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,8 +19,7 @@ public class PrimaryController {
     MenuItem loadFile;
     @FXML
     MenuItem saveFile;
-    File file;
-    List<Song> songs;
+    List<File> files;
     @FXML
     TableView<Song> songTableView;
     @FXML
@@ -40,10 +40,11 @@ public class PrimaryController {
         albumColumn.setCellValueFactory(new PropertyValueFactory<>("album"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<>("category"));
         votesColumn.setCellValueFactory(new PropertyValueFactory<>("votes"));
+        songTableView.getItems().setAll(SongList.getSongs().keySet());
     }
 
     @FXML
-    private void switchToSecondary() throws IOException {
+    private void addSong() throws IOException {
         App.setRoot("secondary");
     }
 
@@ -53,13 +54,13 @@ public class PrimaryController {
         fc.setTitle("Open Resource File");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.xml", "*.csv");
         fc.getExtensionFilters().add(extFilter);
-        file = fc.showOpenDialog(new Stage());
-        CSVReader csvReader = new CSVReader(file);
-        if (songs==null) {
-            songs = csvReader.parseCSV();
-        } else {
-            songs.addAll(csvReader.parseCSV());
+        files = fc.showOpenMultipleDialog(new Stage());
+        for (File file:files) {
+            CSVReader csvReader = new CSVReader(file);
+            csvReader.parseCSV();
         }
-        songTableView.getItems().setAll(songs);
+        songTableView.getItems().setAll(SongList.getSongs().keySet());
     }
+
+
 }

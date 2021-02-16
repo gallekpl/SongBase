@@ -7,7 +7,8 @@ public enum Category {
     POP("Pop"),
     JAZZ("Jazz"),
     ALTERNATIVE("Alternative"),
-    DISCO("Disco");
+    DISCO("Disco"),
+    OTHER("Other");
 
 public final String label;
 
