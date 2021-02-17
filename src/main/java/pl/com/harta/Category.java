@@ -1,5 +1,7 @@
 package pl.com.harta;
 
+import java.util.Locale;
+
 public enum Category {
     HEAVY_METAL("Heavy Metal"),
     ROCK("Rock"),
@@ -18,11 +20,11 @@ public final String label;
 
     public static Category valueOfLabel(String label) {
         for (Category category : values()) {
-            if (category.label.equals(label)) {
+            if ((category.label).equalsIgnoreCase(label)) {
                 return category;
-            }
+            } //else return Category.OTHER;
         }
-        return null;
+        return OTHER;
     }
 
     public String toString() {

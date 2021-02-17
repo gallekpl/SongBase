@@ -25,7 +25,6 @@ public class CSVReader {
     }
 
     public void parseCSV() throws IOException {
-        List<Song> songs = new ArrayList<>();
         Reader reader = new FileReader(file);
         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader()
                 .withIgnoreSurroundingSpaces()
@@ -47,7 +46,7 @@ public class CSVReader {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error");
                     alert.setHeaderText("An error has occured");
-                    alert.setContentText("Wrong line nr: " + csvParser.getCurrentLineNumber() + "\nin file: " + file.getName() + ".\nReading next line if any.");
+                    alert.setContentText("Wrong line nr: " + csvParser.getCurrentLineNumber() + "\nor wrong header line\nin file: " + file.getName() + ".\nReading next line if any.");
                     alert.showAndWait();
                 }
             }

@@ -1,7 +1,12 @@
 package pl.com.harta;
 
 import java.io.IOException;
+import java.util.Arrays;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
 public class SecondaryController {
@@ -13,8 +18,13 @@ public class SecondaryController {
     @FXML
     TextField albumTextField;
     @FXML
-    TextField categoryTextField;
+    ChoiceBox<Category> categoryChoiceBox;
     SongRepositoryImpl songRepository;
+
+
+    public void initialize()  {
+    categoryChoiceBox.getItems().addAll(Category.values());
+    }
 
     @FXML
     private void switchToPrimary() throws IOException {
@@ -23,8 +33,9 @@ public class SecondaryController {
 
     @FXML
     private void addSong() throws IOException {
+
         Song song = new Song(titleTextField.getText(), authorTextField.getText(),
-                albumTextField.getText(), Category.valueOfLabel(categoryTextField.getText()), 0);
+                albumTextField.getText(), categoryChoiceBox.getSelectionModel().getSelectedItem(), 0);
         if (songRepository==null) {
             songRepository = new SongRepositoryImpl();
         }
