@@ -1,6 +1,6 @@
 package pl.com.harta;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +14,20 @@ public class SongRepositoryImpl implements ISongRepository {
     @Override
     public Map<Song, Song> getSongs() {
         return SongList.getSongs();
+    }
+
+    @Override
+    public List<Song> getSongsByCategory(Category category) {
+        List<Song> songsByCategory = new ArrayList<>();
+
+
+        for (Song song : getSongs().values()) {
+            if (song.getCategory() == category) {
+                songsByCategory.add(song);
+            }
+        }
+
+        return songsByCategory;
     }
 
     @Override

@@ -1,22 +1,22 @@
 package pl.com.harta;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.collections.ListUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.File;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PrimaryController {
 
@@ -40,6 +40,8 @@ public class PrimaryController {
     TableColumn<Song, Integer> votesColumn;
     @FXML
     Button voteButton;
+    @FXML
+    ChoiceBox<String> categoryChoiceBox;
     ObservableList<Song> selectedSongs;
     List<Song> alreadyVoted = new ArrayList<>();
 
@@ -55,11 +57,19 @@ public class PrimaryController {
         songTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         if (songRepository==null) songRepository = new SongRepositoryImpl();
         selectedSongs = songTableView.getSelectionModel().getSelectedItems();
+        songTableView.sort();
 
-        //if you already voted for a song in selection vote button will get disabled,
+        //if you already voted for a song in selection, vote button will get disabled,
         //to allow many votes for one song comment out next 2 lines
         selectedSongs.addListener((ListChangeListener<Song>) change ->
                 voteButton.setDisable(!ListUtils.intersection(selectedSongs, alreadyVoted).isEmpty()));
+
+        for (int i = 0; i < Category.values().length; i++) {
+            categoryChoiceBox.getItems().add(Category.values()[i].toString());
+        }
+        categoryChoiceBox.getItems().add("All");
+        categoryChoiceBox.getSelectionModel().select("All");
+        categoryChoiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> getSongsByCategory());
     }
 
     @FXML
@@ -70,17 +80,42 @@ public class PrimaryController {
     @FXML
     private void loadFile() {
         FileChooser fc = new FileChooser();
-        fc.setTitle("Open Resource File");
+        fc.setTitle("Open file");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.xml", "*.csv");
-
+        fc.getExtensionFilters().add(extFilter);
         files = fc.showOpenMultipleDialog(new Stage());
         try {
             for (File file:files) {
-                CSVReader csvReader = new CSVReader(file);
-                csvReader.parseCSV();
+                if (FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("csv")) {
+                    CSVReader csvReader = new CSVReader(file);
+                    csvReader.parseCSV();
+                } else {
+                    ReaderXML readerXML = new ReaderXML(file);
+                    readerXML.parseXML();
+                }
             }
-        } catch (NullPointerException | IOException ignored) {};
+        } catch (NullPointerException | IOException ignored) {} catch (SAXException | ParserConfigurationException e) {
+            e.printStackTrace();
+        }
+        ;
         songTableView.getItems().setAll(songRepository.getSongs().keySet());
+    }
+
+    @FXML
+    private void saveFile() throws IOException, TransformerException, ParserConfigurationException {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Save file");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.xml", "*.csv");
+        fc.getExtensionFilters().add(extFilter);
+        File file = fc.showSaveDialog(new Stage());
+        if (FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("xml")) {
+            SaveXML saveXML = new SaveXML(file, songTableView.getItems());
+            saveXML.saveFile();
+        } else {
+            SaveCSV saveCSV = new SaveCSV(file, songTableView.getItems());
+            saveCSV.saveFile();
+        }
+
     }
 
     @FXML
@@ -91,6 +126,7 @@ public class PrimaryController {
             alreadyVoted.add(song);
         }
         songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        songTableView.sort();
     }
 
     @FXML
@@ -107,7 +143,9 @@ public class PrimaryController {
         for (Song song:songTableView.getItems()) {
             songRepository.resetVotesInSong(song);
         }
+        alreadyVoted.clear();
         songTableView.getItems().setAll(songRepository.getSongs().keySet());
+
 
     }
 
@@ -115,8 +153,19 @@ public class PrimaryController {
     private void resetVotes() {
         for (Song song:selectedSongs) {
             songRepository.resetVotesInSong(song);
+            alreadyVoted.remove(song);
         }
         songTableView.getItems().setAll(songRepository.getSongs().keySet());
+
+    }
+
+    @FXML
+    private void getSongsByCategory() {
+        if (categoryChoiceBox.getSelectionModel().getSelectedItem().equalsIgnoreCase("all")) {
+            songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        } else {
+            songTableView.getItems().setAll(songRepository.getSongsByCategory(Category.valueOfLabel(categoryChoiceBox.getSelectionModel().getSelectedItem())));
+        }
     }
 
 

@@ -15,49 +15,42 @@
         <RowConstraints vgrow="ALWAYS" />
     </rowConstraints>
     <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-      <HBox>
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-         <children>
-            <Label minWidth="60.0" text="Title" />
-              <TextField fx:id="titleTextField" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <HBox>
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-         <children>
-            <Label minWidth="60.0" text="Author" />
-              <TextField fx:id="authorTextField" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <HBox VBox.vgrow="ALWAYS">
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-         <children>
+        <HBox>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </VBox.margin>
+            <Label minWidth="60.0" text="Title"/>
+            <TextField fx:id="titleTextField" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </VBox.margin>
+            <Label minWidth="60.0" text="Author"/>
+            <TextField fx:id="authorTextField" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox VBox.vgrow="ALWAYS">
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </VBox.margin>
             <Label minWidth="60.0" text="Album">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin></Label>
-              <TextField fx:id="albumTextField" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
-      <HBox>
-         <VBox.margin>
-            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-         </VBox.margin>
-         <children>
-            <Label minWidth="60.0" text="Category" />
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
+            </Label>
+            <TextField fx:id="albumTextField" HBox.hgrow="ALWAYS"/>
+        </HBox>
+        <HBox>
+            <VBox.margin>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </VBox.margin>
+            <Label minWidth="60.0" text="Category"/>
             <ChoiceBox fx:id="categoryChoiceBox" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
+                <HBox.margin>
+                    <Insets/>
+                </HBox.margin>
             </ChoiceBox>
-         </children>
-      </HBox>
+        </HBox>
     </VBox>
     <HBox alignment="BOTTOM_CENTER" fillHeight="false" spacing="20.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
         <padding>

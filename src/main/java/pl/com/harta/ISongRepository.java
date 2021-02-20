@@ -1,5 +1,6 @@
 package pl.com.harta;
 
+import java.util.List;
 import java.util.Map;
 
 public interface ISongRepository {
@@ -9,4 +10,6 @@ public interface ISongRepository {
     void resetVotesInSong(Song song);
     void deleteSong(Song song);
     Map<Song, Song> getSongs();
+    List<Song> getSongsByCategory(Category category);
+
 }

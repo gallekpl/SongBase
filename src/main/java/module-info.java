@@ -4,6 +4,8 @@ module pl.com.harta {
     requires commons.csv;
     requires lombok;
     requires commons.collections;
+    requires java.xml;
+    requires commons.io;
 
     opens pl.com.harta to javafx.fxml;
     exports pl.com.harta;
