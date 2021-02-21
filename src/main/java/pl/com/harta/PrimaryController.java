@@ -9,7 +9,6 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.apache.commons.collections.ListUtils;
 import org.apache.commons.io.FilenameUtils;
-import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -44,6 +43,8 @@ public class PrimaryController {
     ChoiceBox<String> categoryChoiceBox;
     ObservableList<Song> selectedSongs;
     List<Song> alreadyVoted = new ArrayList<>();
+    @FXML
+    ChoiceBox<String> showChoiceBox;
 
 
     //initializng table columns on window start
@@ -57,6 +58,8 @@ public class PrimaryController {
         songTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         if (songRepository==null) songRepository = new SongRepositoryImpl();
         selectedSongs = songTableView.getSelectionModel().getSelectedItems();
+        votesColumn.setSortType(TableColumn.SortType.DESCENDING);
+        songTableView.getSortOrder().add(votesColumn);
         songTableView.sort();
 
         //if you already voted for a song in selection, vote button will get disabled,
@@ -70,6 +73,12 @@ public class PrimaryController {
         categoryChoiceBox.getItems().add("All");
         categoryChoiceBox.getSelectionModel().select("All");
         categoryChoiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> getSongsByCategory());
+
+        showChoiceBox.getItems().add("Top 3");
+        showChoiceBox.getItems().add("Top 10");
+        showChoiceBox.getItems().add("All");
+        showChoiceBox.getSelectionModel().select("All");
+        showChoiceBox.getSelectionModel().selectedItemProperty().addListener((observableValue, s, t1) -> showTop());
     }
 
     @FXML
@@ -94,11 +103,11 @@ public class PrimaryController {
                     readerXML.parseXML();
                 }
             }
-        } catch (NullPointerException | IOException ignored) {} catch (SAXException | ParserConfigurationException e) {
+        } catch (NullPointerException | IOException ignored) {} catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
-        ;
-        songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        showChoiceBox.getSelectionModel().select("All");
+        getSongsByCategory();
     }
 
     @FXML
@@ -125,8 +134,7 @@ public class PrimaryController {
             songRepository.addVoteToSong(song);
             alreadyVoted.add(song);
         }
-        songTableView.getItems().setAll(songRepository.getSongs().keySet());
-        songTableView.sort();
+        getSongsByCategory();
     }
 
     @FXML
@@ -135,7 +143,7 @@ public class PrimaryController {
         for (Song song:selectedSongs) {
             songRepository.deleteSong(song);
         }
-        songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        getSongsByCategory();
     }
 
     @FXML
@@ -144,7 +152,7 @@ public class PrimaryController {
             songRepository.resetVotesInSong(song);
         }
         alreadyVoted.clear();
-        songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        getSongsByCategory();
 
 
     }
@@ -155,7 +163,7 @@ public class PrimaryController {
             songRepository.resetVotesInSong(song);
             alreadyVoted.remove(song);
         }
-        songTableView.getItems().setAll(songRepository.getSongs().keySet());
+        getSongsByCategory();
 
     }
 
@@ -165,6 +173,42 @@ public class PrimaryController {
             songTableView.getItems().setAll(songRepository.getSongs().keySet());
         } else {
             songTableView.getItems().setAll(songRepository.getSongsByCategory(Category.valueOfLabel(categoryChoiceBox.getSelectionModel().getSelectedItem())));
+        }
+        songTableView.getSortOrder().add(votesColumn);
+        songTableView.sort();
+
+    }
+
+    @FXML
+    private void showTop() {
+        List<Song> top = new ArrayList<>();
+
+        switch (showChoiceBox.getSelectionModel().getSelectedItem()) {
+
+            case "Top 3":
+                songTableView.getSortOrder().clear();
+                getSongsByCategory();
+                try {
+                    top.add(songTableView.getItems().get(0));
+                    top.add(songTableView.getItems().get(1));
+                    top.add(songTableView.getItems().get(2));
+                    songTableView.getItems().setAll(top);
+                } catch (IndexOutOfBoundsException ignored) {}
+                break;
+            case "Top 10":
+                songTableView.getSortOrder().clear();
+                getSongsByCategory();
+                for (int i = 0; i < 11; i++ ) {
+                    try {
+                        top.add(songTableView.getItems().get(i));
+                    } catch (IndexOutOfBoundsException ignored) {}
+                }
+
+                songTableView.getItems().setAll(top);
+                break;
+            case "All":
+                songTableView.getSortOrder().clear();
+                getSongsByCategory();
         }
     }
 

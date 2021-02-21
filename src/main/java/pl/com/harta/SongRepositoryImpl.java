@@ -1,8 +1,6 @@
 package pl.com.harta;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class SongRepositoryImpl implements ISongRepository {
 
@@ -30,6 +28,8 @@ public class SongRepositoryImpl implements ISongRepository {
         return songsByCategory;
     }
 
+
+
     @Override
     public void addSong(Song song) {
         if (!SongList.getSongs().containsKey(song)) {
@@ -52,7 +52,6 @@ public class SongRepositoryImpl implements ISongRepository {
     @Override
     public void deleteSong(Song song) {
         SongList.getSongs().remove(song);
-
     }
 
     @Override
@@ -62,4 +61,6 @@ public class SongRepositoryImpl implements ISongRepository {
         SongList.getSongs().remove(song, song);
         SongList.getSongs().put(songToBeUpdated, songToBeUpdated);
     }
+
+
 }

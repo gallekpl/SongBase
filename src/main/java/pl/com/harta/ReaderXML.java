@@ -21,12 +21,14 @@ public class ReaderXML {
 
     }
 
-    public void parseXML() throws ParserConfigurationException, IOException, SAXException {
+    public void parseXML() throws ParserConfigurationException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(file);
-        doc.getDocumentElement().normalize();
-        NodeList nodeList = doc.getElementsByTagName("song");
+        try {
+            Document doc = db.parse(file);
+            doc.getDocumentElement().normalize();
+            NodeList nodeList = doc.getElementsByTagName("song");
+
 
         for(int i=0; i < nodeList.getLength(); i++) {
             Node node = nodeList.item(i);
@@ -45,5 +47,6 @@ public class ReaderXML {
                 songRepository.addSong(song);
             }
         }
+        } catch (IOException | SAXException ignored) {}
     }
 }

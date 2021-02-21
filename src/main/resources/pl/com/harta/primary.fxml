@@ -6,7 +6,7 @@
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.harta.PrimaryController">
    <top>
-       <MenuBar BorderPane.alignment="CENTER">
+       <MenuBar prefWidth="935.0" BorderPane.alignment="CENTER">
            <Menu mnemonicParsing="false" text="File">
                <MenuItem fx:id="loadFile" mnemonicParsing="false" onAction="#loadFile" text="Load" />
                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveFile" text="Save" />
@@ -18,42 +18,42 @@
        </MenuBar>
    </top>
    <bottom>
-       <VBox alignment="CENTER" prefHeight="22.0" prefWidth="800.0" spacing="20.0" BorderPane.alignment="CENTER">
+       <VBox alignment="CENTER" prefWidth="935.0" spacing="20.0" BorderPane.alignment="CENTER">
            <padding>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
            </padding>
            <Button fx:id="addSong" onAction="#addSong" text="Add song" />
        </VBox>
    </bottom>
-   <right>
-      <TableView fx:id="songTableView" prefHeight="200.0" prefWidth="635.0" BorderPane.alignment="CENTER">
+   <center>
+      <TableView fx:id="songTableView" minWidth="600.0" prefWidth="750.0">
         <columns>
-          <TableColumn fx:id="titleColumn" prefWidth="158.0" text="Title" />
-          <TableColumn fx:id="authorColumn" minWidth="0.0" prefWidth="122.0" text="Author" />
-          <TableColumn fx:id="albumColumn" prefWidth="138.0" text="Album" />
-          <TableColumn fx:id="categoryColumn" prefWidth="127.0" text="Category" />
-          <TableColumn fx:id="votesColumn" prefWidth="71.0" text="Votes" />
+          <TableColumn fx:id="titleColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Title" />
+          <TableColumn fx:id="authorColumn" maxWidth="300.0" minWidth="-1.0" prefWidth="150.0" text="Author" />
+          <TableColumn fx:id="albumColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Album" />
+          <TableColumn fx:id="categoryColumn" maxWidth="150.0" minWidth="-1.0" prefWidth="120.0" text="Category" />
+          <TableColumn fx:id="votesColumn" maxWidth="100.0" minWidth="-1.0" text="Votes" />
         </columns>
       </TableView>
-   </right>
-   <center>
-       <VBox alignment="CENTER_LEFT" fillWidth="false" BorderPane.alignment="CENTER">
-           <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" text="Vote">
+   </center>
+   <left>
+       <VBox alignment="CENTER_LEFT" fillWidth="false" maxWidth="185.0" prefWidth="185.0" style="-fx-border-width: 5; -fx-border-style: dotted;" BorderPane.alignment="CENTER_LEFT">
+           <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefWidth="135.0" text="Vote">
               <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
               </VBox.margin>
            </Button>
-           <Button mnemonicParsing="false" onAction="#removeSong" text="Remove Song">
+           <Button alignment="CENTER" mnemonicParsing="false" onAction="#removeSong" prefWidth="135.0" text="Remove Song">
               <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
               </VBox.margin>
            </Button>
-           <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#resetVotes" text="Reset votes">
+           <Button mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#resetVotes" prefWidth="135.0" text="Reset votes">
               <VBox.margin>
                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
               </VBox.margin>
            </Button>
-         <Button mnemonicParsing="false" onAction="#removeAllVotes" text="Remove all votes">
+         <Button mnemonicParsing="false" onAction="#removeAllVotes" prefWidth="135.0" text="Remove all votes">
             <VBox.margin>
                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin></Button>
@@ -62,11 +62,24 @@
                <Insets left="20.0" />
             </VBox.margin>
          </Label>
-         <ChoiceBox fx:id="categoryChoiceBox" VBox.vgrow="ALWAYS">
+         <ChoiceBox fx:id="categoryChoiceBox" prefWidth="135.0" VBox.vgrow="ALWAYS">
             <VBox.margin>
                <Insets bottom="20.0" left="20.0" right="20.0" />
             </VBox.margin>
          </ChoiceBox>
+         <Label text="Show">
+            <VBox.margin>
+               <Insets left="20.0" />
+            </VBox.margin>
+         </Label>
+         <ChoiceBox fx:id="showChoiceBox" prefWidth="135.0">
+            <VBox.margin>
+               <Insets bottom="20.0" left="20.0" right="20.0" />
+            </VBox.margin>
+         </ChoiceBox>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
        </VBox>
-   </center>
+   </left>
 </BorderPane>
