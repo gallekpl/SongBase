@@ -21,7 +21,7 @@ public class ReaderXML {
 
     }
 
-    public void parseXML() throws ParserConfigurationException {
+    public void parseXML() throws ParserConfigurationException, IOException {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         try {
@@ -47,6 +47,6 @@ public class ReaderXML {
                 songRepository.addSong(song);
             }
         }
-        } catch (IOException | SAXException ignored) {}
+        } catch (SAXException ignored) {}
     }
 }

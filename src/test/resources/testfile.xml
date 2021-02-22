@@ -1,0 +1,30 @@
+<songs>
+    <song>
+        <title>Imported</title>
+        <author>Jessie Reyez</author>
+        <album>Before Love Came to Kill Us</album>
+        <category>R&amp;B</category>
+        <votes>40</votes>
+    </song>
+    <song>
+        <title>Living in a Ghost Town</title>
+        <author>The Rolling Stones</author>
+        <album>Honk</album>
+        <category>Rock</category>
+        <votes>40</votes>
+    </song>
+    <song>
+        <title>You Should Be Sad</title>
+        <author>Halsey</author>
+        <album>Manic</album>
+        <category>Alternative</category>
+        <votes>4</votes>
+    </song>
+    <song>
+        <title>You Should Be Sad2</title>
+        <author>Halsey</author>
+        <album>Manic</album>
+        <category>Alternative</category>
+        <votes>3</votes>
+    </song>
+</songs>

@@ -29,26 +29,26 @@ public class CSVReader {
         CSVParser csvParser = new CSVParser(reader, CSVFormat.DEFAULT.withFirstRecordAsHeader()
                 .withIgnoreSurroundingSpaces()
                 .withIgnoreEmptyLines());
-            for (CSVRecord record : csvParser) {
-                try {
-                    String title = record.get("Title");
-                    String author = record.get("Author");
-                    String album = record.get("Album");
-                    String categoryValue = record.get("Category");
-                    Category category = Category.valueOfLabel(categoryValue);
-                    int votes = Integer.parseInt(record.get("Votes"));
-                    Song song = new Song(title, author, album, category, votes);
-                    if (songRepository == null) {
-                        songRepository = new SongRepositoryImpl();
-                    }
-                    songRepository.addSong(song);
-                } catch (IllegalArgumentException e) {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("An error has occured");
-                    alert.setContentText("Wrong line nr: " + csvParser.getCurrentLineNumber() + "\nor wrong header line\nin file: " + file.getName() + ".\nReading next line if any.");
-                    alert.showAndWait();
+        for (CSVRecord record : csvParser) {
+            try {
+                String title = record.get("Title");
+                String author = record.get("Author");
+                String album = record.get("Album");
+                String categoryValue = record.get("Category");
+                Category category = Category.valueOfLabel(categoryValue);
+                int votes = Integer.parseInt(record.get("Votes"));
+                Song song = new Song(title, author, album, category, votes);
+                if (songRepository == null) {
+                    songRepository = new SongRepositoryImpl();
                 }
+                songRepository.addSong(song);
+            } catch (IllegalArgumentException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("An error has occurred");
+                alert.setContentText("Wrong line nr: " + csvParser.getCurrentLineNumber() + "\nor wrong header line\nin file: " + file.getName() + ".\nReading next line if any.");
+                alert.showAndWait();
             }
+        }
     }
 }

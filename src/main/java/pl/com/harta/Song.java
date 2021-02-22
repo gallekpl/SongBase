@@ -1,12 +1,6 @@
 package pl.com.harta;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
 public class Song {
 
     String title;
@@ -35,5 +29,53 @@ public class Song {
         result = 31 * result + album.hashCode();
         result = 31 * result + category.hashCode();
         return result;
+    }
+
+    public Song(String title, String author, String album, Category category, int votes) {
+        this.title = title;
+        this.author = author;
+        this.album = album;
+        this.category = category;
+        this.votes = votes;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(String album) {
+        this.album = album;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public int getVotes() {
+        return votes;
+    }
+
+    public void setVotes(int votes) {
+        this.votes = votes;
     }
 }
