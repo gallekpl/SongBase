@@ -1,5 +1,6 @@
 package pl.com.harta;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -11,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestReaderXMLClass {
 
-    SongRepositoryImpl songRepository = new SongRepositoryImpl();
+    static SongRepositoryImpl songRepository = new SongRepositoryImpl();
 
     @Test
     public void loadFileTest() throws ParserConfigurationException, IOException {
@@ -28,6 +29,11 @@ public class TestReaderXMLClass {
         ReaderXML readerXML = new ReaderXML(file);
 
         assertThrows(FileNotFoundException.class, readerXML::parseXML);
+    }
+
+    @AfterAll
+    static void clear() {
+        songRepository.clear();
     }
 
 

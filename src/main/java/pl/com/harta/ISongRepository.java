@@ -11,5 +11,6 @@ public interface ISongRepository {
     void deleteSong(Song song);
     Map<Song, Song> getSongs();
     List<Song> getSongsByCategory(Category category);
+    void clear();
 
 }

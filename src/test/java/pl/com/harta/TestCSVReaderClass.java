@@ -1,5 +1,6 @@
 package pl.com.harta;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class TestCSVReaderClass {
 
-    SongRepositoryImpl songRepository = new SongRepositoryImpl();
+    static SongRepositoryImpl songRepository = new SongRepositoryImpl();
 
     @Test
     public void loadFileTest() throws IOException {
@@ -18,7 +19,7 @@ public class TestCSVReaderClass {
         CSVReader csvReader = new CSVReader(file);
         csvReader.parseCSV();
         assertFalse(songRepository.getSongs().values().isEmpty());
-        assertEquals(5, songRepository.getSongs().size());
+        assertEquals(4, songRepository.getSongs().size());
     }
 
     @Test
@@ -38,8 +39,9 @@ public class TestCSVReaderClass {
         //should throw that, because graphic UI is not initialized and Alert window can't be rendered. For that I should use TestFX library
 
         assertFalse(songRepository.getSongs().values().isEmpty());
-        assertEquals(1, songRepository.getSongs().size());
-        //should read only one line before error is caught (in illegal.csv file)
-        // in the previous statement.
+    }
+    @AfterAll
+    static void clear() {
+        songRepository.clear();
     }
 }

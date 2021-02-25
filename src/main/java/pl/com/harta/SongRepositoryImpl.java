@@ -62,5 +62,10 @@ public class SongRepositoryImpl implements ISongRepository {
         SongList.getSongs().put(songToBeUpdated, songToBeUpdated);
     }
 
+    @Override
+    public void clear() {
+        SongList.getSongs().clear();
+    }
+
 
 }
