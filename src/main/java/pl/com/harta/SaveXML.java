@@ -16,8 +16,8 @@ import java.io.File;
 import java.util.List;
 
 public class SaveXML {
-    File file;
-    List<Song> list;
+    private final File file;
+    private final List<Song> list;
 
     public SaveXML(File file, List<Song> list) {
         this.file = file;

@@ -3,11 +3,11 @@ package pl.com.harta;
 
 public class Song {
 
-    String title;
-    String author;
-    String album;
-    Category category;
-    int votes;
+    private String title;
+    private String author;
+    private String album;
+    private Category category;
+    private int votes;
 
     @Override
     public boolean equals(Object o) {

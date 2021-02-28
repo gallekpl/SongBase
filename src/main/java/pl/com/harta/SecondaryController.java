@@ -1,25 +1,22 @@
 package pl.com.harta;
 
-import java.io.IOException;
-import java.util.Arrays;
-
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
+
 public class SecondaryController {
 
     @FXML
-    TextField titleTextField;
+    private TextField titleTextField;
     @FXML
-    TextField authorTextField;
+    private TextField authorTextField;
     @FXML
-    TextField albumTextField;
+    private TextField albumTextField;
     @FXML
-    ChoiceBox<Category> categoryChoiceBox;
-    SongRepositoryImpl songRepository;
+    private ChoiceBox<Category> categoryChoiceBox;
+    private SongRepositoryImpl songRepository;
 
 
     public void initialize()  {

@@ -12,8 +12,8 @@ import java.util.List;
 
 public class SaveCSV {
 
-    File file;
-    List<Song> list;
+    private final File file;
+    private final List<Song> list;
 
     public SaveCSV(File file, List<Song> list) {
         this.file = file;

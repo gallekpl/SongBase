@@ -19,35 +19,35 @@ import java.util.List;
 
 public class PrimaryController {
 
-    SongRepositoryImpl songRepository;
+    private SongRepositoryImpl songRepository;
     @FXML
-    MenuItem loadFile;
+    private MenuItem loadFile;
     @FXML
-    MenuItem saveFile;
-    List<File> files;
+    private MenuItem saveFile;
+    private List<File> files;
     @FXML
-    TableView<Song> songTableView;
+    private TableView<Song> songTableView;
     @FXML
-    TableColumn<Song, String> titleColumn;
+    private TableColumn<Song, String> titleColumn;
     @FXML
-    TableColumn<Song, String> authorColumn;
+    private TableColumn<Song, String> authorColumn;
     @FXML
-    TableColumn<Song, String> albumColumn;
+    private TableColumn<Song, String> albumColumn;
     @FXML
-    TableColumn<Song, Category> categoryColumn;
+    private TableColumn<Song, Category> categoryColumn;
     @FXML
-    TableColumn<Song, Integer> votesColumn;
+    private TableColumn<Song, Integer> votesColumn;
     @FXML
-    Button voteButton;
+    private Button voteButton;
     @FXML
-    ChoiceBox<String> categoryChoiceBox;
-    ObservableList<Song> selectedSongs;
-    List<Song> alreadyVoted = new ArrayList<>();
+    private ChoiceBox<String> categoryChoiceBox;
+    private ObservableList<Song> selectedSongs;
+    private List<Song> alreadyVoted = new ArrayList<>();
     @FXML
-    ChoiceBox<String> showChoiceBox;
+    private ChoiceBox<String> showChoiceBox;
 
 
-    //initializng table columns on window start
+    //initializing table columns on window start
     public void initialize() {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -90,7 +90,7 @@ public class PrimaryController {
     private void loadFile() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open file");
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.xml", "*.csv");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.XML", "*.CSV", "*.csv" ,"*.xml");
         fc.getExtensionFilters().add(extFilter);
         files = fc.showOpenMultipleDialog(new Stage());
         try {
@@ -184,8 +184,7 @@ public class PrimaryController {
         List<Song> top = new ArrayList<>();
 
         switch (showChoiceBox.getSelectionModel().getSelectedItem()) {
-
-            case "Top 3":
+            case "Top 3" -> {
                 songTableView.getSortOrder().clear();
                 getSongsByCategory();
                 try {
@@ -193,22 +192,24 @@ public class PrimaryController {
                     top.add(songTableView.getItems().get(1));
                     top.add(songTableView.getItems().get(2));
                     songTableView.getItems().setAll(top);
-                } catch (IndexOutOfBoundsException ignored) {}
-                break;
-            case "Top 10":
+                } catch (IndexOutOfBoundsException ignored) {
+                }
+            }
+            case "Top 10" -> {
                 songTableView.getSortOrder().clear();
                 getSongsByCategory();
-                for (int i = 0; i < 11; i++ ) {
+                for (int i = 0; i < 11; i++) {
                     try {
                         top.add(songTableView.getItems().get(i));
-                    } catch (IndexOutOfBoundsException ignored) {}
+                    } catch (IndexOutOfBoundsException ignored) {
+                    }
                 }
-
                 songTableView.getItems().setAll(top);
-                break;
-            case "All":
+            }
+            case "All" -> {
                 songTableView.getSortOrder().clear();
                 getSongsByCategory();
+            }
         }
     }
 

@@ -1,0 +1,24 @@
+.button{
+    -fx-text-fill: #d7d0d0;
+    -fx-background-color: black;
+    -fx-background-radius: 10;
+    -fx-border-style: solid;
+    -fx-border-color: saddlebrown;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-border-insets: -1;
+
+}
+.button:hover {
+      -fx-text-fill: #d7d0d0;
+      -fx-background-color: saddlebrown;
+      -fx-background-radius: 10;
+      -fx-border-style: solid;
+      -fx-border-color: saddlebrown;
+      -fx-border-width: 2;
+      -fx-border-radius: 10;
+      -fx-border-insets: -1;
+}
+.menuItem {
+       -fx-text-fill: #d7d0d0;
+}

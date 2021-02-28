@@ -1,9 +1,6 @@
 package pl.com.harta;
 
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.stage.Stage;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
@@ -12,13 +9,11 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class CSVReader {
-    File file;
-    SongRepositoryImpl songRepository;
+    private final File file;
+    private SongRepositoryImpl songRepository;
 
     public CSVReader(File file) {
         this.file = file;
