@@ -20,7 +20,7 @@ public class TestReaderXMLClass {
         ReaderXML readerXML = new ReaderXML(file);
         readerXML.parseXML();
         assertFalse(songRepository.getSongs().values().isEmpty());
-        assertEquals(4, songRepository.getSongs().size());
+        assertEquals(15, songRepository.getSongs().size());
     }
 
     @Test

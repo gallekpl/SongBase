@@ -19,7 +19,7 @@ public class TestCSVReaderClass {
         CSVReader csvReader = new CSVReader(file);
         csvReader.parseCSV();
         assertFalse(songRepository.getSongs().values().isEmpty());
-        assertEquals(4, songRepository.getSongs().size());
+        assertEquals(15, songRepository.getSongs().size());
     }
 
     @Test

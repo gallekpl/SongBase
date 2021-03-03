@@ -1,17 +1,101 @@
 <songs>
     <song>
-        <title>Imported</title>
-        <author>Jessie Reyez</author>
-        <album>Before Love Came to Kill Us</album>
-        <category>R&amp;B</category>
-        <votes>40</votes>
+        <title>Fullmoon</title>
+        <author>Sonata Arctica</author>
+        <album>Ecliptica</album>
+        <category>Heavy Metal</category>
+        <votes>27</votes>
+    </song>
+    <song>
+        <title>Lady In Black</title>
+        <author>Ensiferum</author>
+        <album>One More Magic Potion</album>
+        <category>Heavy Metal</category>
+        <votes>25</votes>
+    </song>
+    <song>
+        <title>A Vagabond's Life</title>
+        <author>Mono Inc</author>
+        <album>Welcome To Hell</album>
+        <category>Rock</category>
+        <votes>22</votes>
+    </song>
+    <song>
+        <title>Cedynia 972</title>
+        <author>Horytnica</author>
+        <album>Historie walk o wolność</album>
+        <category>Rock</category>
+        <votes>19</votes>
+    </song>
+    <song>
+        <title>Down Under</title>
+        <author>Lagerstein</author>
+        <album>All for Rum &amp; Rum for All</album>
+        <category>Heavy Metal</category>
+        <votes>18</votes>
+    </song>
+    <song>
+        <title>Dziewczyna z gór</title>
+        <author>Kordian</author>
+        <album>Kordian</album>
+        <category>Disco</category>
+        <votes>16</votes>
+    </song>
+    <song>
+        <title>Zombie Dance</title>
+        <author>Grave Digger</author>
+        <album>The Living Dead</album>
+        <category>Heavy Metal</category>
+        <votes>16</votes>
+    </song>
+    <song>
+        <title>Rapapara</title>
+        <author>Łydka Grubasa</author>
+        <album>Perpetuum Debile</album>
+        <category>Rock</category>
+        <votes>14</votes>
+    </song>
+    <song>
+        <title>Highwayman</title>
+        <author>The Highwayman</author>
+        <album>Highwayman</album>
+        <category>Country</category>
+        <votes>14</votes>
     </song>
     <song>
         <title>Living in a Ghost Town</title>
         <author>The Rolling Stones</author>
         <album>Honk</album>
         <category>Rock</category>
-        <votes>40</votes>
+        <votes>12</votes>
+    </song>
+    <song>
+        <title>Unforgiven</title>
+        <author>Metallica</author>
+        <album>Reloaded</album>
+        <category>Heavy Metal</category>
+        <votes>11</votes>
+    </song>
+    <song>
+        <title>Little Honda</title>
+        <author>The Beach Boys</author>
+        <album>50 Big Ones</album>
+        <category>Rock</category>
+        <votes>9</votes>
+    </song>
+    <song>
+        <title>Ring of Fire</title>
+        <author>Johny Cash</author>
+        <album>Ring of Fire</album>
+        <category>Country</category>
+        <votes>8</votes>
+    </song>
+    <song>
+        <title>Imported</title>
+        <author>Jessie Reyez</author>
+        <album>Before Love Came to Kill Us</album>
+        <category>R&amp;B</category>
+        <votes>5</votes>
     </song>
     <song>
         <title>You Should Be Sad</title>
@@ -19,12 +103,5 @@
         <album>Manic</album>
         <category>Alternative</category>
         <votes>4</votes>
-    </song>
-    <song>
-        <title>You Should Be Sad2</title>
-        <author>Halsey</author>
-        <album>Manic</album>
-        <category>Alternative</category>
-        <votes>3</votes>
     </song>
 </songs>
