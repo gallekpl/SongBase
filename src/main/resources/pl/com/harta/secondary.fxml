@@ -4,60 +4,54 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.collections.FXCollections?>
-<?import pl.com.harta.Category?>
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.harta.SecondaryController">
-    <columnConstraints>
-        <ColumnConstraints percentWidth="0.0" />
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints />
-        <RowConstraints vgrow="ALWAYS" />
-    </rowConstraints>
-    <VBox GridPane.columnIndex="0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="0">
-        <HBox>
+<BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.harta.SecondaryController">
+   <center>
+    <VBox fillWidth="false" style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 1 1 0 1; -fx-background-color: #656565;">
+        <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
-            <Label minWidth="60.0" text="Title"/>
-            <TextField fx:id="titleTextField" HBox.hgrow="ALWAYS"/>
+            <Label minWidth="60.0" text="Title" />
+            <TextField fx:id="titleTextField" onKeyReleased="#onKeyReleased" HBox.hgrow="ALWAYS" />
         </HBox>
-        <HBox>
+        <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
-            <Label minWidth="60.0" text="Author"/>
-            <TextField fx:id="authorTextField" HBox.hgrow="ALWAYS"/>
+            <Label minWidth="60.0" text="Author" />
+            <TextField fx:id="authorTextField" onKeyReleased="#onKeyReleased" HBox.hgrow="ALWAYS" />
         </HBox>
-        <HBox VBox.vgrow="ALWAYS">
+        <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
             <Label minWidth="60.0" text="Album">
                 <HBox.margin>
-                    <Insets/>
+                    <Insets />
                 </HBox.margin>
             </Label>
-            <TextField fx:id="albumTextField" HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="albumTextField" onKeyReleased="#onKeyReleased" HBox.hgrow="ALWAYS" />
         </HBox>
-        <HBox>
+        <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
             <VBox.margin>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </VBox.margin>
-            <Label minWidth="60.0" text="Category"/>
-            <ChoiceBox fx:id="categoryChoiceBox" HBox.hgrow="ALWAYS">
+            <Label minWidth="60.0" text="Category" />
+            <ChoiceBox fx:id="categoryChoiceBox" onMouseReleased="#onKeyReleased">
                 <HBox.margin>
-                    <Insets/>
+                    <Insets />
                 </HBox.margin>
             </ChoiceBox>
         </HBox>
     </VBox>
-    <HBox alignment="BOTTOM_CENTER" fillHeight="false" spacing="20.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+   </center>
+    <bottom>
+    <HBox alignment="BOTTOM_CENTER" fillHeight="false" spacing="20.0" style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1;" stylesheets="@styles.css">
         <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
         </padding>
-        <Label text="Add a song" />
-        <Button onAction="#addSong" text="Add" />
+        <Button fx:id="addButton" onAction="#addSong" text="Add" />
         <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Cancel" />
     </HBox>
-</GridPane>
+    </bottom>
+</BorderPane>

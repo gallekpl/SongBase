@@ -1,8 +1,12 @@
 package pl.com.harta;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -17,15 +21,25 @@ public class SecondaryController {
     private TextField albumTextField;
     @FXML
     private ChoiceBox<Category> categoryChoiceBox;
+    @FXML
+    private Button addButton;
     private SongRepositoryImpl songRepository;
 
 
     public void initialize()  {
     categoryChoiceBox.getItems().addAll(Category.values());
+    categoryChoiceBox.getSelectionModel().select(Category.OTHER);
+    addButton.setDisable(true);
+
+
     }
 
     @FXML
     private void switchToPrimary() throws IOException {
+        Stage stage = (Stage) albumTextField.getScene().getWindow();
+        stage.setHeight(600);
+        stage.setWidth(935);
+        stage.setTitle("SongBase");
         App.setRoot("primary");
     }
 
@@ -38,7 +52,22 @@ public class SecondaryController {
             songRepository = new SongRepositoryImpl();
         }
         songRepository.addSong(song);
-        App.setRoot("primary");
+        switchToPrimary();
+
+    }
+
+    @FXML
+    private void onKeyReleased() {
+        //if any fields are empty Add button is disabled
+        String title;
+        String author;
+        String album;
+
+        title = titleTextField.getText().trim();
+        author = authorTextField.getText().trim();
+        album = albumTextField.getText().trim();
+
+        addButton.setDisable(title.isEmpty() | author.isEmpty() | album.isEmpty());
 
 
     }

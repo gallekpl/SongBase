@@ -78,6 +78,11 @@ public class PrimaryController {
 
     @FXML
     private void addSong() throws IOException {
+
+        Stage stage = (Stage) voteButton.getScene().getWindow();
+        stage.setHeight(350);
+        stage.setWidth(350);
+        stage.setTitle("Add a song");
         App.setRoot("secondary");
     }
 

@@ -71,15 +71,15 @@
             </VBox.margin></Button>
            <VBox style="-fx-border-radius: 10; -fx-border-style: solid; -fx-border-insets: -10; -fx-border-width: 1; -fx-background-color: #444444; -fx-background-insets: -10; -fx-background-radius: 10;">
                <opaqueInsets>
-                   <Insets/>
+                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                </VBox.margin>
-               <Label text="Category" textFill="#d7d0d0"/>
-               <ChoiceBox fx:id="categoryChoiceBox" prefWidth="135.0" stylesheets="@styles.css"/>
-               <Label text="Show" textFill="#d7d0d0"/>
-               <ChoiceBox fx:id="showChoiceBox" prefWidth="135.0"/>
+               <Label text="Category" textFill="#d7d0d0" />
+               <ChoiceBox fx:id="categoryChoiceBox" prefWidth="135.0" stylesheets="@styles.css" />
+               <Label text="Show Top" textFill="#d7d0d0" />
+               <ChoiceBox fx:id="showChoiceBox" prefWidth="135.0" />
            </VBox>
          <BorderPane.margin>
             <Insets />
