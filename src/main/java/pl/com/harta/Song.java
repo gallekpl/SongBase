@@ -9,6 +9,8 @@ public class Song {
     private Category category;
     private int votes;
 
+
+    //equals and hashCode overwritten, so it doesn't count votes while checking equality
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

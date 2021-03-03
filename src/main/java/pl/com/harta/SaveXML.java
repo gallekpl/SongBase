@@ -28,7 +28,7 @@ public class SaveXML {
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         DocumentBuilder db = dbf.newDocumentBuilder();
         Document doc = db.newDocument();
-
+        //creates xml structure and saves file
         Element songs = doc.createElement("songs");
         doc.appendChild(songs);
         for (Song s:list) {
@@ -54,8 +54,8 @@ public class SaveXML {
         }
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
         Transformer transformer = transformerFactory.newTransformer();
-        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
-        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes"); //looks better :)
+        transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes"); //no xml declaration at the beginning
         DOMSource domSource = new DOMSource(doc);
         StreamResult streamResult = new StreamResult(file);
         transformer.transform(domSource, streamResult);

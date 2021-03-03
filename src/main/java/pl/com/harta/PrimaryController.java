@@ -21,11 +21,6 @@ public class PrimaryController {
 
     private SongRepositoryImpl songRepository;
     @FXML
-    private MenuItem loadFile;
-    @FXML
-    private MenuItem saveFile;
-    private List<File> files;
-    @FXML
     private TableView<Song> songTableView;
     @FXML
     private TableColumn<Song, String> titleColumn;
@@ -42,12 +37,12 @@ public class PrimaryController {
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
     private ObservableList<Song> selectedSongs;
-    private List<Song> alreadyVoted = new ArrayList<>();
+    private final List<Song> alreadyVoted = new ArrayList<>();
     @FXML
     private ChoiceBox<String> showChoiceBox;
 
 
-    //initializing table columns on window start
+    //initializing table columns, listeners, etc. on window start
     public void initialize() {
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         authorColumn.setCellValueFactory(new PropertyValueFactory<>("author"));
@@ -92,9 +87,10 @@ public class PrimaryController {
         fc.setTitle("Open file");
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.XML", "*.CSV", "*.csv" ,"*.xml");
         fc.getExtensionFilters().add(extFilter);
-        files = fc.showOpenMultipleDialog(new Stage());
+        List<File> files = fc.showOpenMultipleDialog(new Stage());
         try {
-            for (File file:files) {
+            for (File file: files) {
+                //checks if file is csv or xml then uses appropriate method
                 if (FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("csv")) {
                     CSVReader csvReader = new CSVReader(file);
                     csvReader.parseCSV();
@@ -118,6 +114,9 @@ public class PrimaryController {
         fc.getExtensionFilters().add(extFilter);
         File file = fc.showSaveDialog(new Stage());
         if (FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("xml")) {
+            /*  if extension is xml (any case) then save as xml file,
+                otherwise save as csv (even if extension
+                is something different)  */
             SaveXML saveXML = new SaveXML(file, songTableView.getItems());
             saveXML.saveFile();
         } else {
@@ -134,7 +133,7 @@ public class PrimaryController {
             songRepository.addVoteToSong(song);
             alreadyVoted.add(song);
         }
-        getSongsByCategory();
+        showTop();
     }
 
     @FXML
@@ -143,16 +142,19 @@ public class PrimaryController {
         for (Song song:selectedSongs) {
             songRepository.deleteSong(song);
         }
-        getSongsByCategory();
+        showTop();
     }
 
     @FXML
     private void removeAllVotes() {
+
+        //removes all votes from all songs in visible list (ex. Top 10)
+        //can be changed to remove votes from all songs in repository
         for (Song song:songTableView.getItems()) {
             songRepository.resetVotesInSong(song);
         }
         alreadyVoted.clear();
-        getSongsByCategory();
+        showTop();
 
 
     }
@@ -163,7 +165,7 @@ public class PrimaryController {
             songRepository.resetVotesInSong(song);
             alreadyVoted.remove(song);
         }
-        getSongsByCategory();
+        showTop();
 
     }
 
@@ -181,7 +183,7 @@ public class PrimaryController {
 
     @FXML
     private void showTop() {
-        List<Song> top = new ArrayList<>();
+        List<Song> top = new ArrayList<>();  //list of songs that has to be shown
 
         switch (showChoiceBox.getSelectionModel().getSelectedItem()) {
             case "Top 3" -> {
@@ -198,7 +200,7 @@ public class PrimaryController {
             case "Top 10" -> {
                 songTableView.getSortOrder().clear();
                 getSongsByCategory();
-                for (int i = 0; i < 11; i++) {
+                for (int i = 0; i < 10; i++) {
                     try {
                         top.add(songTableView.getItems().get(i));
                     } catch (IndexOutOfBoundsException ignored) {

@@ -21,10 +21,10 @@ public class SaveCSV {
     }
 
     public void saveFile() throws IOException {
-
+        // just saves given songs into csv file
         BufferedWriter writer = Files.newBufferedWriter(Paths.get(file.getPath()));
         CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.DEFAULT
-            .withHeader("Title", "Author", "Album", "Category", "Votes"));
+            .withHeader("Title", "Author", "Album", "Category", "Votes")); //adds header
         for (Song song:list) {
             csvPrinter.printRecord(song.getTitle(), song.getAuthor(), song.getAlbum(), song.getCategory(), song.getVotes());
         }

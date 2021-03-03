@@ -10,6 +10,9 @@ public enum Category {
     JAZZ("Jazz"),
     ALTERNATIVE("Alternative"),
     DISCO("Disco"),
+    COUNTRY("Country"),
+    REGGAE("Reggae"),
+    ELECTRONIC("Electronic"),
     OTHER("Other");
 
 public final String label;
@@ -18,6 +21,8 @@ public final String label;
         this.label = label;
     }
 
+
+    //checks label instead of just category
     public static Category valueOfLabel(String label) {
         for (Category category : values()) {
             if ((category.label).equalsIgnoreCase(label)) {

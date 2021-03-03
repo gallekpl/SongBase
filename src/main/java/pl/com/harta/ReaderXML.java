@@ -38,6 +38,7 @@ public class ReaderXML {
         } else {
 
             try {
+                //getting songs from xml
                 Document doc = db.parse(file);
                 doc.getDocumentElement().normalize();
                 NodeList nodeList = doc.getElementsByTagName("song");

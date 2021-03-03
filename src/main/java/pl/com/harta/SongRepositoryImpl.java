@@ -2,6 +2,9 @@ package pl.com.harta;
 
 import java.util.*;
 
+
+//implementation of interface, operations on songs
+//instead of SongList (Map) access to database can be implemented here
 public class SongRepositoryImpl implements ISongRepository {
 
     @Override
@@ -31,6 +34,7 @@ public class SongRepositoryImpl implements ISongRepository {
 
 
     @Override
+    //adds song if it doesn't exist
     public void addSong(Song song) {
         if (!SongList.getSongs().containsKey(song)) {
             SongList.getSongs().put(song, song);
@@ -55,7 +59,7 @@ public class SongRepositoryImpl implements ISongRepository {
     }
 
     @Override
-    public void resetVotesInSong(Song song) {
+    public void resetVotesInSong(Song song) { //deletes votes in selected song
         Song songToBeUpdated = SongList.getSongs().get(song);
         songToBeUpdated.setVotes(0);
         SongList.getSongs().remove(song, song);
@@ -63,6 +67,7 @@ public class SongRepositoryImpl implements ISongRepository {
     }
 
     @Override
+    //deletes everything
     public void clear() {
         SongList.getSongs().clear();
     }

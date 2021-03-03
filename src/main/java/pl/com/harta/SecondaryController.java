@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
+//new controller for "creating new song" window
 public class SecondaryController {
 
     @FXML
@@ -30,7 +31,7 @@ public class SecondaryController {
 
     @FXML
     private void addSong() throws IOException {
-
+        //gets data from fields and creates new song
         Song song = new Song(titleTextField.getText(), authorTextField.getText(),
                 albumTextField.getText(), categoryChoiceBox.getSelectionModel().getSelectedItem(), 0);
         if (songRepository==null) {
