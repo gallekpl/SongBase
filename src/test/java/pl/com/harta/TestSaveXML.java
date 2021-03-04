@@ -9,7 +9,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestSaveXML {
@@ -35,7 +34,7 @@ public class TestSaveXML {
         SaveXML saveXML = new SaveXML(file, list);
         saveXML.saveFile();
         assertTrue(file.exists());
-        assertEquals(792.0, file.length());
+        assertTrue(file.length()==792 | file.length()==832); //792 for linux and 832 for windows, cause of different line end, 1 byte on linux and 2 bytes on windows
         file.deleteOnExit();
     }
 }
