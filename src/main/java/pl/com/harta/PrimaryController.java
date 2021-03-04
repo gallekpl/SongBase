@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.commons.collections.ListUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -218,6 +219,16 @@ public class PrimaryController {
                 getSongsByCategory();
             }
         }
+    }
+
+    @FXML
+    private void showAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        //alert.initStyle(StageStyle.UTILITY);
+        alert.setTitle("About");
+        alert.setHeaderText("SongBase");
+        alert.setContentText("Program for song management.\nWritten by Ariel Gał as a recruitment task\nfor Core Services Java Bootcamp 2021.");
+        alert.showAndWait();
     }
 
 
