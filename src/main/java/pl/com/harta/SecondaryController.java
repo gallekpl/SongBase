@@ -1,7 +1,5 @@
 package pl.com.harta;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -26,10 +24,10 @@ public class SecondaryController {
     private SongRepositoryImpl songRepository;
 
 
-    public void initialize()  {
-    categoryChoiceBox.getItems().addAll(Category.values());
-    categoryChoiceBox.getSelectionModel().select(Category.OTHER);
-    addButton.setDisable(true);
+    public void initialize() {
+        categoryChoiceBox.getItems().addAll(Category.values());
+        categoryChoiceBox.getSelectionModel().select(Category.OTHER);
+        addButton.setDisable(true);
 
 
     }
@@ -48,7 +46,7 @@ public class SecondaryController {
         //gets data from fields and creates new song
         Song song = new Song(titleTextField.getText(), authorTextField.getText(),
                 albumTextField.getText(), categoryChoiceBox.getSelectionModel().getSelectedItem(), 0);
-        if (songRepository==null) {
+        if (songRepository == null) {
             songRepository = new SongRepositoryImpl();
         }
         songRepository.addSong(song);

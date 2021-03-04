@@ -31,7 +31,7 @@ public class SaveXML {
         //creates xml structure and saves file
         Element songs = doc.createElement("songs");
         doc.appendChild(songs);
-        for (Song s:list) {
+        for (Song s : list) {
             Element song = doc.createElement("song");
             songs.appendChild(song);
             Element title = doc.createElement("title");

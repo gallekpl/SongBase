@@ -12,6 +12,7 @@ public class SongRepositoryImpl implements ISongRepository {
         return SongList.getSongs().get(song);
 
     }
+
     @Override
     public Map<Song, Song> getSongs() {
         return SongList.getSongs();
@@ -32,14 +33,13 @@ public class SongRepositoryImpl implements ISongRepository {
     }
 
 
-
     @Override
     //adds song if it doesn't exist
     public void addSong(Song song) {
         if (!SongList.getSongs().containsKey(song)) {
             SongList.getSongs().put(song, song);
         } else {
-            getSong(song).setVotes(getSong(song).getVotes()+ song.getVotes());
+            getSong(song).setVotes(getSong(song).getVotes() + song.getVotes());
         }
 
     }
@@ -47,7 +47,7 @@ public class SongRepositoryImpl implements ISongRepository {
     @Override
     public void addVoteToSong(Song song) {  //for updating votes
         Song songToBeUpdated = SongList.getSongs().get(song);
-        songToBeUpdated.setVotes(songToBeUpdated.getVotes()+1);
+        songToBeUpdated.setVotes(songToBeUpdated.getVotes() + 1);
         SongList.getSongs().remove(song, song);
         SongList.getSongs().put(songToBeUpdated, songToBeUpdated);
 

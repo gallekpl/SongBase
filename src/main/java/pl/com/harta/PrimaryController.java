@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.apache.commons.collections.ListUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -52,7 +51,7 @@ public class PrimaryController {
         votesColumn.setCellValueFactory(new PropertyValueFactory<>("votes"));
         songTableView.getItems().setAll(SongList.getSongs().keySet());
         songTableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        if (songRepository==null) songRepository = new SongRepositoryImpl();
+        if (songRepository == null) songRepository = new SongRepositoryImpl();
         selectedSongs = songTableView.getSelectionModel().getSelectedItems();
         votesColumn.setSortType(TableColumn.SortType.DESCENDING);
         songTableView.getSortOrder().add(votesColumn);
@@ -91,11 +90,11 @@ public class PrimaryController {
     private void loadFile() {
         FileChooser fc = new FileChooser();
         fc.setTitle("Open file");
-        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.XML", "*.CSV", "*.csv" ,"*.xml");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV and XML", "*.XML", "*.CSV", "*.csv", "*.xml");
         fc.getExtensionFilters().add(extFilter);
         List<File> files = fc.showOpenMultipleDialog(new Stage());
         try {
-            for (File file: files) {
+            for (File file : files) {
                 //checks if file is csv or xml then uses appropriate method
                 if (FilenameUtils.getExtension(file.getName()).equalsIgnoreCase("csv")) {
                     CSVReader csvReader = new CSVReader(file);
@@ -105,7 +104,8 @@ public class PrimaryController {
                     readerXML.parseXML();
                 }
             }
-        } catch (NullPointerException | IOException ignored) {} catch (ParserConfigurationException e) {
+        } catch (NullPointerException | IOException ignored) {
+        } catch (ParserConfigurationException e) {
             e.printStackTrace();
         }
         showChoiceBox.getSelectionModel().select("All");
@@ -135,7 +135,7 @@ public class PrimaryController {
     @FXML
     private void vote() {
 
-        for (Song song:selectedSongs) {
+        for (Song song : selectedSongs) {
             songRepository.addVoteToSong(song);
             alreadyVoted.add(song);
         }
@@ -145,7 +145,7 @@ public class PrimaryController {
     @FXML
     private void removeSong() {
 
-        for (Song song:selectedSongs) {
+        for (Song song : selectedSongs) {
             songRepository.deleteSong(song);
         }
         showTop();
@@ -156,7 +156,7 @@ public class PrimaryController {
 
         //removes all votes from all songs in visible list (ex. Top 10)
         //can be changed to remove votes from all songs in repository
-        for (Song song:songTableView.getItems()) {
+        for (Song song : songTableView.getItems()) {
             songRepository.resetVotesInSong(song);
         }
         alreadyVoted.clear();
@@ -167,7 +167,7 @@ public class PrimaryController {
 
     @FXML
     private void resetVotes() {
-        for (Song song:selectedSongs) {
+        for (Song song : selectedSongs) {
             songRepository.resetVotesInSong(song);
             alreadyVoted.remove(song);
         }

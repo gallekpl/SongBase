@@ -32,7 +32,7 @@ public class TestCSVReaderClass {
 
 
     @Test
-    public void shouldCatchIllegalArgumentException(){
+    public void shouldCatchIllegalArgumentException() {
         File file = new File("src/test/resources/illegal.csv");
         CSVReader csvReader = new CSVReader(file);
         assertThrows(ExceptionInInitializerError.class, csvReader::parseCSV);
@@ -40,6 +40,7 @@ public class TestCSVReaderClass {
 
         assertFalse(songRepository.getSongs().values().isEmpty());
     }
+
     @AfterAll
     static void clear() {
         songRepository.clear();

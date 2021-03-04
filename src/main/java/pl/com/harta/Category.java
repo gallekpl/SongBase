@@ -1,7 +1,5 @@
 package pl.com.harta;
 
-import java.util.Locale;
-
 public enum Category {
     HEAVY_METAL("Heavy Metal"),
     ROCK("Rock"),
@@ -15,7 +13,7 @@ public enum Category {
     ELECTRONIC("Electronic"),
     OTHER("Other");
 
-public final String label;
+    public final String label;
 
     Category(String label) {
         this.label = label;

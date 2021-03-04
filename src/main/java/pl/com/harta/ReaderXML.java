@@ -60,7 +60,8 @@ public class ReaderXML {
                         songRepository.addSong(song);
                     }
                 }
-            } catch (SAXException ignored) {}
+            } catch (SAXException ignored) {
+            }
         }
     }
 }

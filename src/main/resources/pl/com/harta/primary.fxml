@@ -5,85 +5,99 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane style="-fx-background-radius: 50 50 50 50; -fx-border-radius: 50 50 50 50;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.com.harta.PrimaryController">
-   <top>
-       <MenuBar prefWidth="935.0" style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1 1 0 1;" BorderPane.alignment="CENTER">
-           <Menu mnemonicParsing="false" text="File">
-               <MenuItem fx:id="loadFile" mnemonicParsing="false" onAction="#loadFile" text="Load" />
-               <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveFile" text="Save" />
-           </Menu>
-           <Menu mnemonicParsing="false" text="Edit">
-               <MenuItem mnemonicParsing="false" onAction="#resetVotes" text="Reset votes" />
-               <MenuItem mnemonicParsing="false" onAction="#removeAllVotes" text="Reset all votes" />
-           </Menu>
-           <Menu mnemonicParsing="false" text="Help">
-               <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About" />
-           </Menu>
-       </MenuBar>
-   </top>
-   <bottom>
-       <HBox alignment="CENTER" prefWidth="935.0" spacing="20.0" style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1;" BorderPane.alignment="CENTER">
-           <padding>
-               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-           </padding>
-           <Button fx:id="addSong" onAction="#addSong" stylesheets="@styles.css" text="Add song" />
-           <Button mnemonicParsing="false" onAction="#removeSong" prefWidth="135.0" stylesheets="@styles.css" text="Remove Song">
-              <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-              </VBox.margin>
-           </Button>
-       </HBox>
-   </bottom>
-   <center>
-      <TableView fx:id="songTableView" minWidth="600.0" prefWidth="750.0" style="-fx-border-style: solid; -fx-border-width: 1 1 0 1;">
-        <columns>
-          <TableColumn fx:id="titleColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Title" />
-          <TableColumn fx:id="authorColumn" maxWidth="300.0" minWidth="-1.0" prefWidth="150.0" text="Author" />
-          <TableColumn fx:id="albumColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Album" />
-          <TableColumn fx:id="categoryColumn" maxWidth="150.0" minWidth="-1.0" prefWidth="120.0" text="Category" />
-          <TableColumn fx:id="votesColumn" maxWidth="100.0" minWidth="-1.0" text="Votes" />
-        </columns>
-      </TableView>
-   </center>
-   <left>
-       <VBox alignment="CENTER_LEFT" fillWidth="false" maxWidth="185.0" prefWidth="185.0" style="-fx-border-width: 1 0 0 1; -fx-border-style: solid; -fx-background-color: #656565;" BorderPane.alignment="CENTER_LEFT">
-           <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefWidth="135.0" text="Vote" textFill="#d7d0d0">
-              <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-              </VBox.margin>
-            <stylesheets>
-               <URL value="@styles.css" />
-               <URL value="@styles.css" />
-            </stylesheets>
-           </Button>
-           <Button mnemonicParsing="false" onAction="#resetVotes" prefWidth="135.0" text="Reset votes" textFill="#d7d0d0">
-              <VBox.margin>
-                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-              </VBox.margin>
-            <stylesheets>
-               <URL value="@styles.css" />
-               <URL value="@styles.css" />
-            </stylesheets>
-           </Button>
-         <Button mnemonicParsing="false" onAction="#removeAllVotes" prefWidth="135.0" stylesheets="@styles.css" text="Reset all votes" textFill="#d7d0d0">
-            <VBox.margin>
-               <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </VBox.margin></Button>
-           <VBox style="-fx-border-radius: 10; -fx-border-style: solid; -fx-border-insets: -10; -fx-border-width: 1; -fx-background-color: #444444; -fx-background-insets: -10; -fx-background-radius: 10;">
-               <opaqueInsets>
-                   <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                   <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-               </VBox.margin>
-               <Label text="Category" textFill="#d7d0d0" />
-               <ChoiceBox fx:id="categoryChoiceBox" prefWidth="135.0" stylesheets="@styles.css" />
-               <Label text="Show Top" textFill="#d7d0d0" />
-               <ChoiceBox fx:id="showChoiceBox" prefWidth="135.0" />
-           </VBox>
-         <BorderPane.margin>
-            <Insets />
-         </BorderPane.margin>
-       </VBox>
-   </left>
+<BorderPane style="-fx-background-radius: 50 50 50 50; -fx-border-radius: 50 50 50 50;"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="pl.com.harta.PrimaryController">
+    <top>
+        <MenuBar prefWidth="935.0"
+                 style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1 1 0 1;"
+                 BorderPane.alignment="CENTER">
+            <Menu mnemonicParsing="false" text="File">
+                <MenuItem fx:id="loadFile" mnemonicParsing="false" onAction="#loadFile" text="Load"/>
+                <MenuItem fx:id="saveFile" mnemonicParsing="false" onAction="#saveFile" text="Save"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+                <MenuItem mnemonicParsing="false" onAction="#resetVotes" text="Reset votes"/>
+                <MenuItem mnemonicParsing="false" onAction="#removeAllVotes" text="Reset all votes"/>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <MenuItem mnemonicParsing="false" onAction="#showAbout" text="About"/>
+            </Menu>
+        </MenuBar>
+    </top>
+    <bottom>
+        <HBox alignment="CENTER" prefWidth="935.0" spacing="20.0"
+              style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1;"
+              BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+            </padding>
+            <Button fx:id="addSong" onAction="#addSong" stylesheets="@styles.css" text="Add song"/>
+            <Button mnemonicParsing="false" onAction="#removeSong" prefWidth="135.0" stylesheets="@styles.css"
+                    text="Remove Song">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+            </Button>
+        </HBox>
+    </bottom>
+    <center>
+        <TableView fx:id="songTableView" minWidth="600.0" prefWidth="750.0"
+                   style="-fx-border-style: solid; -fx-border-width: 1 1 0 1;">
+            <columns>
+                <TableColumn fx:id="titleColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Title"/>
+                <TableColumn fx:id="authorColumn" maxWidth="300.0" minWidth="-1.0" prefWidth="150.0" text="Author"/>
+                <TableColumn fx:id="albumColumn" maxWidth="400.0" minWidth="-1.0" prefWidth="200.0" text="Album"/>
+                <TableColumn fx:id="categoryColumn" maxWidth="150.0" minWidth="-1.0" prefWidth="120.0" text="Category"/>
+                <TableColumn fx:id="votesColumn" maxWidth="100.0" minWidth="-1.0" text="Votes"/>
+            </columns>
+        </TableView>
+    </center>
+    <left>
+        <VBox alignment="CENTER_LEFT" fillWidth="false" maxWidth="185.0" prefWidth="185.0"
+              style="-fx-border-width: 1 0 0 1; -fx-border-style: solid; -fx-background-color: #656565;"
+              BorderPane.alignment="CENTER_LEFT">
+            <Button fx:id="voteButton" mnemonicParsing="false" onAction="#vote" prefWidth="135.0" text="Vote"
+                    textFill="#d7d0d0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+                <stylesheets>
+                    <URL value="@styles.css"/>
+                    <URL value="@styles.css"/>
+                </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#resetVotes" prefWidth="135.0" text="Reset votes"
+                    textFill="#d7d0d0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+                <stylesheets>
+                    <URL value="@styles.css"/>
+                    <URL value="@styles.css"/>
+                </stylesheets>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#removeAllVotes" prefWidth="135.0" stylesheets="@styles.css"
+                    text="Reset all votes" textFill="#d7d0d0">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+            </Button>
+            <VBox style="-fx-border-radius: 10; -fx-border-style: solid; -fx-border-insets: -10; -fx-border-width: 1; -fx-background-color: #444444; -fx-background-insets: -10; -fx-background-radius: 10;">
+                <opaqueInsets>
+                    <Insets/>
+                </opaqueInsets>
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+                <Label text="Category" textFill="#d7d0d0"/>
+                <ChoiceBox fx:id="categoryChoiceBox" prefWidth="135.0" stylesheets="@styles.css"/>
+                <Label text="Show Top" textFill="#d7d0d0"/>
+                <ChoiceBox fx:id="showChoiceBox" prefWidth="135.0"/>
+            </VBox>
+            <BorderPane.margin>
+                <Insets/>
+            </BorderPane.margin>
+        </VBox>
+    </left>
 </BorderPane>
