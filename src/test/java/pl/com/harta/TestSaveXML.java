@@ -34,7 +34,7 @@ public class TestSaveXML {
         SaveXML saveXML = new SaveXML(file, list);
         saveXML.saveFile();
         assertTrue(file.exists());
-        assertTrue(file.length()==792 | file.length()==832); //792 for linux and 832 for windows, cause of different line end, 1 byte on linux and 2 bytes on windows
+        assertTrue(file.length()==792 | file.length()==822); //792 for linux and 832 for windows, cause of different line end, 1 byte on linux and 2 bytes on windows
         file.deleteOnExit();
     }
 }
