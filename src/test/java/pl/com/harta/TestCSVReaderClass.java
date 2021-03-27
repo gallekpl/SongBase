@@ -2,6 +2,8 @@ package pl.com.harta;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.parser.CSVReader;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import java.io.File;
 import java.io.FileNotFoundException;

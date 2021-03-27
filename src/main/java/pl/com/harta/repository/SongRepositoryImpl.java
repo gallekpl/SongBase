@@ -1,4 +1,8 @@
-package pl.com.harta;
+package pl.com.harta.repository;
+
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.model.SongList;
 
 import java.util.*;
 

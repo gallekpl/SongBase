@@ -2,6 +2,8 @@ package pl.com.harta;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.parser.ReaderXML;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;

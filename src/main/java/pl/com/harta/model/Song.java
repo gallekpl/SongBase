@@ -1,4 +1,4 @@
-package pl.com.harta;
+package pl.com.harta.model;
 
 
 public class Song {

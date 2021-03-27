@@ -1,4 +1,4 @@
-package pl.com.harta;
+package pl.com.harta.parser;
 
 import javafx.scene.control.Alert;
 import org.apache.commons.io.FileUtils;
@@ -7,6 +7,9 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

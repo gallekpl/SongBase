@@ -1,7 +1,8 @@
-package pl.com.harta;
+package pl.com.harta.parser;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import pl.com.harta.model.Song;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

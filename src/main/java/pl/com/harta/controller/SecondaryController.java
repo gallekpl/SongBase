@@ -1,10 +1,15 @@
-package pl.com.harta;
+package pl.com.harta.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.StringUtils;
+import pl.com.harta.App;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import java.io.IOException;
 
@@ -20,8 +25,11 @@ public class SecondaryController {
     @FXML
     private ChoiceBox<Category> categoryChoiceBox;
     @FXML
+    private TextField votesTextField;
+    @FXML
     private Button addButton;
     private SongRepositoryImpl songRepository;
+
 
 
     public void initialize() {
@@ -45,7 +53,7 @@ public class SecondaryController {
     private void addSong() throws IOException {
         //gets data from fields and creates new song
         Song song = new Song(titleTextField.getText(), authorTextField.getText(),
-                albumTextField.getText(), categoryChoiceBox.getSelectionModel().getSelectedItem(), 0);
+                albumTextField.getText(), categoryChoiceBox.getSelectionModel().getSelectedItem(), Integer.parseInt(votesTextField.getText()));
         if (songRepository == null) {
             songRepository = new SongRepositoryImpl();
         }
@@ -56,7 +64,7 @@ public class SecondaryController {
 
     @FXML
     private void onKeyReleased() {
-        //if any fields are empty Add button is disabled
+        //if any fields are empty or votes is not a number - Add button is disabled
         String title;
         String author;
         String album;
@@ -65,7 +73,7 @@ public class SecondaryController {
         author = authorTextField.getText().trim();
         album = albumTextField.getText().trim();
 
-        addButton.setDisable(title.isEmpty() | author.isEmpty() | album.isEmpty());
+        addButton.setDisable(!StringUtils.isNumeric(votesTextField.getText()) | title.isEmpty() | author.isEmpty() | album.isEmpty());
 
 
     }

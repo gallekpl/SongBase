@@ -3,6 +3,9 @@ package pl.com.harta;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.parser.SaveCSV;
 
 import java.io.File;
 import java.io.IOException;

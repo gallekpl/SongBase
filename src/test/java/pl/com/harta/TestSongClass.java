@@ -2,6 +2,8 @@ package pl.com.harta;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

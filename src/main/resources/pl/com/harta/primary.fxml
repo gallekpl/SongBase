@@ -7,7 +7,7 @@
 
 <BorderPane style="-fx-background-radius: 50 50 50 50; -fx-border-radius: 50 50 50 50;"
             xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.com.harta.PrimaryController">
+            fx:controller="pl.com.harta.controller.PrimaryController">
     <top>
         <MenuBar prefWidth="935.0"
                  style="-fx-background-color: #444444; -fx-border-style: solid; -fx-border-width: 1 1 0 1;"

@@ -2,6 +2,9 @@ package pl.com.harta;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.parser.SaveXML;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;

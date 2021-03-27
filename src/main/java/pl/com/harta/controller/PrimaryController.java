@@ -1,14 +1,21 @@
-package pl.com.harta;
+package pl.com.harta.controller;
 
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.apache.commons.collections.ListUtils;
 import org.apache.commons.io.FilenameUtils;
+import pl.com.harta.*;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.model.SongList;
+import pl.com.harta.parser.CSVReader;
+import pl.com.harta.parser.ReaderXML;
+import pl.com.harta.parser.SaveCSV;
+import pl.com.harta.parser.SaveXML;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -37,7 +44,8 @@ public class PrimaryController {
     @FXML
     private ChoiceBox<String> categoryChoiceBox;
     private ObservableList<Song> selectedSongs;
-    private final List<Song> alreadyVoted = new ArrayList<>();
+    // uncomment bellow line if using listener for voting only once (in initialize())
+    // private final List<Song> alreadyVoted = new ArrayList<>();
     @FXML
     private ChoiceBox<String> showChoiceBox;
 
@@ -58,9 +66,10 @@ public class PrimaryController {
         songTableView.sort();
 
         //if you already voted for a song in selection, vote button will get disabled,
-        //to allow many votes for one song comment out next 2 lines
-        selectedSongs.addListener((ListChangeListener<Song>) change ->
-                voteButton.setDisable(!ListUtils.intersection(selectedSongs, alreadyVoted).isEmpty()));
+        //to allow many votes for one song comment out next line
+
+        //selectedSongs.addListener((ListChangeListener<Song>) change -> voteButton.setDisable(!ListUtils.intersection(selectedSongs, alreadyVoted).isEmpty()));
+
 
         for (int i = 0; i < Category.values().length; i++) {
             categoryChoiceBox.getItems().add(Category.values()[i].toString());
@@ -80,7 +89,7 @@ public class PrimaryController {
     private void addSong() throws IOException {
 
         Stage stage = (Stage) voteButton.getScene().getWindow();
-        stage.setHeight(350);
+        stage.setHeight(450);
         stage.setWidth(350);
         stage.setTitle("Add a song");
         App.setRoot("secondary");
@@ -137,7 +146,8 @@ public class PrimaryController {
 
         for (Song song : selectedSongs) {
             songRepository.addVoteToSong(song);
-            alreadyVoted.add(song);
+            //uncomment for voting only once
+            //alreadyVoted.add(song);
         }
         showTop();
     }
@@ -159,7 +169,8 @@ public class PrimaryController {
         for (Song song : songTableView.getItems()) {
             songRepository.resetVotesInSong(song);
         }
-        alreadyVoted.clear();
+        //uncomment for voting only once
+        //alreadyVoted.clear();
         showTop();
 
 
@@ -169,7 +180,8 @@ public class PrimaryController {
     private void resetVotes() {
         for (Song song : selectedSongs) {
             songRepository.resetVotesInSong(song);
-            alreadyVoted.remove(song);
+            //uncomment for voting only once
+            //alreadyVoted.remove(song);
         }
         showTop();
 
@@ -230,6 +242,8 @@ public class PrimaryController {
         alert.setContentText("Program for song management.\nWritten by Ariel Gał as a recruitment task\nfor Core Services Java Bootcamp 2021.");
         alert.showAndWait();
     }
+
+
 
 
 }

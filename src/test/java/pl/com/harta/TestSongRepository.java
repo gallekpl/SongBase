@@ -4,6 +4,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import java.util.List;
 

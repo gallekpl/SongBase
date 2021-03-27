@@ -1,4 +1,4 @@
-package pl.com.harta;
+package pl.com.harta.model;
 
 
 import java.util.HashMap;

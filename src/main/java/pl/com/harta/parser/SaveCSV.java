@@ -1,7 +1,8 @@
-package pl.com.harta;
+package pl.com.harta.parser;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
+import pl.com.harta.model.Song;
 
 import java.io.BufferedWriter;
 import java.io.File;

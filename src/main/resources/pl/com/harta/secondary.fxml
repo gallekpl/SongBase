@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="pl.com.harta.SecondaryController">
+            fx:controller="pl.com.harta.controller.SecondaryController">
     <center>
         <VBox fillWidth="false"
               style="-fx-border-color: black; -fx-border-style: solid; -fx-border-width: 1 1 0 1; -fx-background-color: #656565;">
@@ -44,6 +44,17 @@
                         <Insets/>
                     </HBox.margin>
                 </ChoiceBox>
+            </HBox>
+            <HBox alignment="CENTER" fillHeight="false" VBox.vgrow="NEVER">
+                <VBox.margin>
+                    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+                </VBox.margin>
+                <Label minWidth="60.0" text="Votes">
+                    <HBox.margin>
+                        <Insets/>
+                    </HBox.margin>
+                </Label>
+                <TextField fx:id="votesTextField" onKeyReleased="#onKeyReleased" HBox.hgrow="ALWAYS"/>
             </HBox>
         </VBox>
     </center>

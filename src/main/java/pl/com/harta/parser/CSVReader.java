@@ -1,9 +1,12 @@
-package pl.com.harta;
+package pl.com.harta.parser;
 
 import javafx.scene.control.Alert;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
+import pl.com.harta.model.Category;
+import pl.com.harta.model.Song;
+import pl.com.harta.repository.SongRepositoryImpl;
 
 import java.io.File;
 import java.io.FileReader;
